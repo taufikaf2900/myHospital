@@ -11,7 +11,9 @@ module.exports = {
           tableName: 'Patients'
         },
         key: 'id'
-      }
+      },
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
     })
   },
 
