@@ -1,3 +1,4 @@
+const { Op } = require( 'sequelize' );
 const { Patient, PatientDetail, PatientMedicalRecord } = require('../models');
 
 class Controller {
@@ -6,12 +7,29 @@ class Controller {
   }
 
   static findAllPatient(req, res) {
-    Patient.findAll({
+    const { status, gender } = req.query;
+    const options = {
       include: {
         model: PatientDetail,
-        attributes: ['status']
+        attributes: ['status'],
+        where: {}
       },
-    })
+      where: {}
+    };
+
+    if(status) {
+      options.include.where.status = {
+        [Op.iLike]: `%${status}%`
+      }
+    }
+
+    if(gender) {
+      options.where.gender = {
+        [Op.iLike]: `%${gender.charAt(0)}%`
+      }
+    }
+
+    Patient.findAll(options)
       .then((patients) => {
         res.render('homepage_taufik', { patients });
       })
