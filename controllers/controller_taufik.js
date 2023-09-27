@@ -53,6 +53,20 @@ class Controller {
       res.send(err);
     });
   }
+
+  static makePatientDie(req, res) {
+    const { patientId } = req.params;
+    PatientDetail.update({ status: 'Died' }, { where: {
+      PatientId: patientId
+    }})
+    .then(() => {
+      res.redirect('/homepage/1');
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
+    });
+  }
 }
 
 module.exports = Controller;
