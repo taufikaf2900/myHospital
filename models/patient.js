@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const Helper = require( '../helpers/helper' );
 module.exports = (sequelize, DataTypes) => {
   class Patient extends Model {
     /**
@@ -11,9 +12,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Patient.hasMany(models.PatientDetail);
+      Patient.hasOne(models.PatientDetail);
       Patient.hasMany(models.PatientMedicalRecord);
       Patient.belongsToMany(models.Desease, { through: models.PatientDesease });
+    }
+
+    get fullGender() {
+      return Helper.generateFullGender(this.gender);
     }
   }
   Patient.init({

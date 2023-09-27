@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Patient</title>
+</head>
+<body>
+  <%- include('navbar_taufik') %>
+  <h1>Add Patient</h1>
+  <form action="/homepage/1/add" method="post">
+    <div>
+      <label for="">Name</label><br>
+      <input type="text" name="name" style="width: 300px; padding: 5px 8px;">
+    </div>
+    <br>
+    <div>
+      <label for="">Age</label><br>
+      <input type="text" name="age" style="width: 300px; padding: 5px 8px;">
+    </div>
+    <br>
+    <div>
+      <label for="">Gender</label><br>
+      <input type="text" name="gender" style="width: 300px; padding: 5px 8px;">
+    </div>
+    <br>
+    <div>
+      <label for="">Category</label><br>
+      <select name="category">
+        <option value="">-- Select Category --</option>
+        <% ['BPJS', 'Non BPJS'].forEach(category => { %>
+          <option value="<%= category %>"><%= category %></option>
+        <% }) %>
+      </select>
+    </div>
+    <br>
+    <div>
+      <label for="">Address</label><br>
+      <textarea name="address" cols="38" rows="10" style="padding: 8px;"></textarea>
+    </div>
+    <br>
+    <div>
+      <label for="">Doctor</label><br>
+      <input type="text" name="doctor" style="width: 300px; padding: 5px 8px;">
+    </div>
+    <br>
+    <button>Submit</button>
+  </form>
+</body>
+</html>

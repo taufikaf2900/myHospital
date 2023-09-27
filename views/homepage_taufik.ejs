@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+</head>
+<body>
+  <%- include('navbar_taufik') %>
+  <h1>Patient List</h1>
+  <a href="/homepage/1/add">Add Patient</a>
+  <form action="/homepage/1" style="margin: 15px 0;">
+    <input type="text" name="search">
+    <button>Search</button>
+  </form>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% patients.forEach((patient, index) => { %>
+        <tr>
+          <td><%= ++index %></td>
+          <td><%= patient.name %></td>
+          <td><%= patient.age %></td>
+          <td><%= patient.fullGender %></td>
+          <td><%= patient.PatientDetail.status %></td>
+          <td>
+            <a href="/homepage/1">Detail</a> ||
+            <a href="/homepage/1">Recovered</a> ||
+            <a href="/homepage/1">Died</a> ||
+            <a href="/homepage/1">Delete</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>
