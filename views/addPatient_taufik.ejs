@@ -16,12 +16,17 @@
     <br>
     <div>
       <label for="">Age</label><br>
-      <input type="text" name="age" style="width: 300px; padding: 5px 8px;">
+      <input type="number" name="age" style="width: 300px; padding: 5px 8px;">
     </div>
     <br>
     <div>
       <label for="">Gender</label><br>
-      <input type="text" name="gender" style="width: 300px; padding: 5px 8px;">
+      <select name="gender">
+        <option value="">-- Select Gender --</option>
+        <% ['Male', 'Female'].forEach(gender => { %>
+          <option value="<%= gender.charAt(0) %>"><%= gender %></option>
+        <% }) %>
+      </select>
     </div>
     <br>
     <div>

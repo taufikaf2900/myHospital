@@ -24,5 +24,10 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'PatientDetail',
   });
+
+  PatientDetail.beforeCreate((instance) => {
+    instance.status = 'Treatment';
+  });
+  
   return PatientDetail;
 };

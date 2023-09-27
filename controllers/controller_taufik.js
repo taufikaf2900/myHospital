@@ -24,6 +24,21 @@ class Controller {
   static showAddPatientForm(req, res) {
     res.render('addPatient_taufik');
   }
+
+  static createPatient(req, res) {
+    const { name, age, gender, category, address, doctor } = req.body;
+    Patient.create({ name, age, gender })
+      .then((result) => {
+        return PatientDetail.create({ category, address, doctor, PatientId: result.id });
+      })
+      .then(() => {
+        res.redirect('/homepage/1');
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send(err);
+      })
+  }
 }
 
 module.exports = Controller;
