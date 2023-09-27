@@ -7,7 +7,7 @@ class Controller {
   }
 
   static findAllPatient(req, res) {
-    const { status, gender } = req.query;
+    const { status, gender, deletedPatient, error } = req.query;
     const options = {
       include: {
         model: PatientDetail,
@@ -31,7 +31,7 @@ class Controller {
 
     Patient.findAll(options)
       .then((patients) => {
-        res.render('homepage_taufik', { patients });
+        res.render('homepage_taufik', { patients, deletedPatient, error });
       })
       .catch((err) => {
         console.log(err);
@@ -84,6 +84,38 @@ class Controller {
       console.log(err);
       res.send(err);
     });
+  }
+
+  static destroyPatient(req, res) {
+    const { patientId } = req.params;
+    let deletedPatien;
+    Patient.findByPk(patientId, {
+      include: {
+        model: PatientDetail,
+        attributes: ['status']
+      }
+    })
+      .then((patient) => {
+        deletedPatien = patient;
+        const status = patient.PatientDetail.status
+
+        if(status === 'Recovered' || status === 'Died') {
+          return patient.destroy();
+        }
+        
+        throw { name: 'error delete patient', msg: 'only patient with status recovered or died can be deleted'};
+      })
+      .then(() => {
+        res.redirect(`/homepage/1?deletedPatient=${deletedPatien.name}`);
+      })
+      .catch((err) => {
+        if(err.name === 'error delete patient') {
+          res.redirect(`/homepage/1?error=${err.msg}`);
+        } else {
+          console.log(err);
+          res.send(err);
+        }
+      });
   }
 }
 
