@@ -33,8 +33,8 @@
           <td><%= patient.fullGender %></td>
           <td><%= patient.PatientDetail.status %></td>
           <td>
-            <a href="/homepage/1">Detail</a> ||
-            <a href="/homepage/1">Recovered</a> ||
+            <a href="/homepage/1/<%= patient.id %>">Detail</a> ||
+            <a href="/homepage/1/patient/<%= patient.id %>/recovered">Recovered</a> ||
             <a href="/homepage/1">Died</a> ||
             <a href="/homepage/1">Delete</a>
           </td>

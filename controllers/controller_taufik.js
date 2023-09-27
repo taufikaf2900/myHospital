@@ -37,7 +37,21 @@ class Controller {
       .catch((err) => {
         console.log(err);
         res.send(err);
-      })
+      });
+  }
+
+  static makePatientRecover(req, res) {
+    const { patientId } = req.params;
+    PatientDetail.update({ status: 'Recovered' }, { where: {
+      PatientId: patientId
+    }})
+    .then(() => {
+      res.redirect('/homepage/1');
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
+    });
   }
 }
 
