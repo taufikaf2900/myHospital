@@ -5,6 +5,7 @@
 - POST /register => membuat akun baru dan menyimpan datanya ke db
 - GET /login => menampilkan halaman / form login
 - POST /login => melakukan login (pengecekan data dan merubah statusLogin menjadi true) => kalau berhasil redirect ke GET /homepage/:userId
+- GET /homepage/:userId => menampilkan data semua pasien
 - GET /homepage/:userId/daily-medical-record => menampilkan daftar daily record semua pasien
 - GET /homepage/:userId/patient/add => menampilkan form add new patient
 - POST /homepage/:userId/patient/add => Create new patient
