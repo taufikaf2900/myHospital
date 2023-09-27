@@ -10,9 +10,9 @@ module.exports = {
         patient.createdAt = new Date();
         patient.updatedAt = new Date();
         return patient;
-      })
-  //  console.log(patients);
-   return queryInterface.bulkInsert('Patients', patients);
+      });
+    //  console.log(patients);
+    return queryInterface.bulkInsert('Patients', patients);
   },
 
   down (queryInterface, Sequelize) {
