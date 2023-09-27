@@ -50,40 +50,12 @@ class Controller {
         return PatientDetail.create({ category, address, doctor, PatientId: result.id });
       })
       .then(() => {
-        res.redirect('/homepage/1');
+        res.redirect('/homepage/1/patient');
       })
       .catch((err) => {
         console.log(err);
         res.send(err);
       });
-  }
-
-  static makePatientRecover(req, res) {
-    const { patientId } = req.params;
-    PatientDetail.update({ status: 'Recovered' }, { where: {
-      PatientId: patientId
-    }})
-    .then(() => {
-      res.redirect('/homepage/1');
-    })
-    .catch((err) => {
-      console.log(err);
-      res.send(err);
-    });
-  }
-
-  static makePatientDie(req, res) {
-    const { patientId } = req.params;
-    PatientDetail.update({ status: 'Died' }, { where: {
-      PatientId: patientId
-    }})
-    .then(() => {
-      res.redirect('/homepage/1');
-    })
-    .catch((err) => {
-      console.log(err);
-      res.send(err);
-    });
   }
 
   static destroyPatient(req, res) {
@@ -106,11 +78,11 @@ class Controller {
         throw { name: 'error delete patient', msg: 'only patient with status recovered or died can be deleted'};
       })
       .then(() => {
-        res.redirect(`/homepage/1?deletedPatient=${deletedPatien.name}`);
+        res.redirect(`/homepage/1/patient?deletedPatient=${deletedPatien.name}`);
       })
       .catch((err) => {
         if(err.name === 'error delete patient') {
-          res.redirect(`/homepage/1?error=${err.msg}`);
+          res.redirect(`/homepage/1/patient?error=${err.msg}`);
         } else {
           console.log(err);
           res.send(err);

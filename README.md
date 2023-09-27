@@ -1,18 +1,20 @@
 ## APP ROUTES
 
-- GET / => menampilkan halaman home
-- GET /register => menampilkan form register
-- POST /register => membuat akun baru dan menyimpan datanya ke db
-- GET /login => menampilkan halaman / form login
-- POST /login => melakukan login (pengecekan data dan merubah statusLogin menjadi true) => kalau berhasil redirect ke GET /homepage/:userId
-- GET /homepage/:userId => menampilkan data semua pasien
-- GET /homepage/:userId/daily-medical-record => menampilkan daftar daily record semua pasien
-- GET /homepage/:userId/patient/add => menampilkan form add new patient
-- POST /homepage/:userId/patient/add => Create new patient
-- GET /homepage/:userId/patient/:patientId => menampilkan detail patient
-- GET /homepage/:userId/patient/:patientId/delete => menghapus patient kalau berhasil balik ke GET /homepage/:userId
-- GET /homepage/:userId/patient/:patientId/edit => menampilkan form edit patient
-- POST /homepage/:userId/patient/:patientId/edit => Update patient
-- GET /homepage/:userId/patient/:patientId/daily-medical-record => menampilkan daily medical record dari patient tertentu
-- GET /homepage/:userId/statistic => menampilkan statistic rumah sakit
-- GET /homepage/:userId/logout => melakukan logout (merubah statusLogin menjadi false) lalu redirect ke GET /login
+| Method | Route                                                | Description                                                         |
+|--------|------------------------------------------------------|---------------------------------------------------------------------|
+| GET    | /                                                    | Menampilkan halaman home `Landing page`                             |
+| GET    | /register                                            | Menampilkan form register                                           |
+| POST   | /register                                            | Membuat user baru                                                   |
+| GET    | /login                                               | Menampilkan form untuk login                                        |
+| POST   | /login                                               | Melakukan login                                                     |
+| GET    | /homepage/:userId/patient                            | Menampilkan seluruh pasien setelah berhasil login                   |
+| GET    | /homepage/:userId/statistic                          | Menampilkan statistic rumah sakit                                   |
+| GET    | /homepage/:userId/medical-record                     | Menampilkan seluruh medical record pasien                           |
+| GET    | /homepage/:userId/patient/add                        | Menampilkan form untuk menambahkan pasien baru                      |
+| POST   | /homepage/:userId/patient/add                        | Menambahkan pasien baru                                             |
+| GET    | /homepage/:userId/patient/:patientId                 | Menampilkan detail pasien berdasarkan id pasein                     |
+| GET    | /homepage/:userId/patient/:patientId/delete          | Menghapus pasien berdasarkan id pasient                             |
+| GET    | /homepage/:userId/patient/:patientId/edit            | Menampilkan form untuk mengedit data pasien berdasarkan id nya      |
+| POST   | /homepage/:userId/patient/:patientId/edit            | Mengupdate data pasien berdasarkan id pasien                        |
+| GET    | /homepage/:userId/patient/:patientId/medical-record  | Mengubah medical record dari pasien berdasarkan id nya              |
+| GET    | /logout                                              | Melakukan logout dan akan di redirect ke halaman login              |
