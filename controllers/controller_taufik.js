@@ -1,6 +1,6 @@
 class Controller {
   static showHomePage(req, res) {
-    res.send('This is home page brother');
+    res.render('home',{});
   }
 
   static redirectToLoginPage(req, res) {
