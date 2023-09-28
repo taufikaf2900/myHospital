@@ -1,6 +1,6 @@
 const express = require('express');
-const routes = require('./routes/index_taufik');
-const HospitalController = require('./controllers/hospital_taufik');
+const routes = require('./routes');
+const HospitalController = require('./controllers/hospital');
 const session = require('express-session');
 
 const app = express();

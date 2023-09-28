@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 class LoginController {
   static showLoginForm(req, res) {
     const { error, errorAuthentication } = req.query;
-    res.render('login_taufik', { error, errorAuthentication });
+    res.render('login', { error, errorAuthentication });
   }
 
   static login(req, res) {

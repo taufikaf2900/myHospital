@@ -6,7 +6,7 @@
   <title>Medical Records</title>
 </head>
 <body>
-  <%- include('navbar_taufik') %>
+  <%- include('navbar') %>
   <h1>Medical Records</h1>
   <h2>Patient's Name: <%= patient.name %></h2>
   <a href="/hospital/patient/<%= patient.id %>/medicalRecord/add">Add Medical Record</a>
@@ -40,5 +40,6 @@
   <% } else { %>
       <p style="font-weight: bold;">There is no medical record yet</p>
   <% } %>
+  <button><a href="/hospital/patient/<%= patient.id %>" style="text-decoration: none; color: #000;">Back</a></button>
 </body>
 </html>

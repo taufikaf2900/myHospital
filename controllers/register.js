@@ -3,7 +3,7 @@ const { User } = require('../models');
 class RegisterController {
   static showRegisterForm(req, res) {
     const { duplicateError, validationErrors } = req.query;
-    res.render('register_taufik', { duplicateError, validationErrors });
+    res.render('register', { duplicateError, validationErrors });
   }
 
   static createUser(req, res) {

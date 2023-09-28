@@ -2,7 +2,7 @@
   "development": {
     "username": "postgres",
     "password": "secret",
-    "database": "pair_project_taufik",
+    "database": "myHospital",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },

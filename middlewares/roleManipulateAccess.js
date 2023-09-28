@@ -1,7 +1,7 @@
 const roleManipulateAccess = (req, res, next) => {
   const role = req.session.role;
 
-  if(role !== 'super admin') {
+  if(role !== 'superadmin') {
     res.redirect('/hospital/patient?error=you have no access only superadmin has access');
   } else {
     next();

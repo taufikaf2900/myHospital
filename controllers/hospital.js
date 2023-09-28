@@ -1,7 +1,7 @@
 const { Op } = require( 'sequelize' );
 const { Patient, PatientDetail, PatientMedicalRecord, Desease, PatientDesease, sequelize, HospitalStatistic } = require('../models');
 const cron = require('node-cron');
-const Helper = require('../helpers/helper_taufik');
+const Helper = require('../helpers/helper');
 
 class HospitalController {
   static redirectToHospitalMainPage(req, res) {
@@ -63,7 +63,7 @@ class HospitalController {
 
     Patient.findAll(options)
       .then((patients) => {
-        res.render('homepage_taufik', { patients, deletedPatient, error });
+        res.render('allPatient', { patients, deletedPatient, error });
       })
       .catch((err) => {
         console.log(err);
@@ -76,7 +76,7 @@ class HospitalController {
       order: [['createdAt', 'DESC']]
     })
       .then((statistics) => {
-        res.render('hospitalStatistic_taufik', { statistics });
+        res.render('hospitalStatistic', { statistics });
       })
       .catch((err) => {
         console.log(err);
@@ -88,7 +88,7 @@ class HospitalController {
     const { errors } = req.query;
     Desease.findAll()
       .then((deseases) => {
-        res.render('addPatient_taufik', { deseases, errors });
+        res.render('addPatient', { deseases, errors });
       })
       .catch((err) => {
         console.log(err);
@@ -159,7 +159,7 @@ class HospitalController {
       include: [PatientDetail, Desease]
     })
     .then((patient) => {
-      res.render('patientDetail_taufik', { patient });
+      res.render('patientDetail', { patient });
     })
   }
 
@@ -172,7 +172,7 @@ class HospitalController {
       }
     })
     .then((patient) => {
-      res.render('editPatient_taufik' , { patient, errors });
+      res.render('editPatient' , { patient, errors });
     })
     .catch((err) => {
       console.log(err);
@@ -211,7 +211,7 @@ class HospitalController {
       })
       .then((deseases) => {
         const currentPatientDeseases = currentPatient.Deseases.map((deseases) => deseases.name);
-        res.render('addPatientDesease_taufik', { currentPatient, deseases, currentPatientDeseases });
+        res.render('addPatientDesease', { currentPatient, deseases, currentPatientDeseases });
       })
       .catch((err) => {
         console.log(err);
@@ -246,7 +246,7 @@ class HospitalController {
       order: [[PatientMedicalRecord, 'date', 'DESC']]
     })
       .then((patient) => {
-        res.render('medicalRecord_taufik', { patient });
+        res.render('medicalRecord', { patient });
       })
       .catch((err) => {
         console.log(err);
@@ -264,7 +264,7 @@ class HospitalController {
       }
     })
       .then((patient) => {
-        res.render('addMedicalRecord_taufik', { patient, errors });
+        res.render('addMedicalRecord', { patient, errors });
       })
       .catch((err) => {
         console.log(err);

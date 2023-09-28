@@ -1,8 +1,8 @@
 const express = require('express');
-const Controller = require('../controllers/controller_taufik');
-const hospitalRoute = require('./hospital_taufik');
-const registerRoute = require('./register_taufik');
-const loginRoute = require('./login_taufik');
+const Controller = require('../controllers/home');
+const hospitalRoute = require('./hospital');
+const registerRoute = require('./register');
+const loginRoute = require('./login');
 const LogoutController = require( '../controllers/logout' );
 const userAuthentication = require('../middlewares/userAuthentication');
 

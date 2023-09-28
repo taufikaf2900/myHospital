@@ -1,13 +1,13 @@
 {
   "name": "my-hospital",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is simple web application that can be used for manage patient's data such as create, update, read, delete, etc. This application implements register, login, and role system to differentiate each user's access to application features",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Kevin Rifaldi Fasha and Taufik Akbar Firmansyah",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
