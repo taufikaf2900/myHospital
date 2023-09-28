@@ -11,5 +11,7 @@ router.get('/hospital/patient/:patientId', Controller.showDetailPatient);
 router.get('/hospital/patient/:patientId/edit', Controller.showEditPatientForm);
 router.post('/hospital/patient/:patientId/edit', Controller.updatePatient);
 router.get('/hospital/patient/:patientId/delete', Controller.destroyPatient);
+router.get('/hospital/patient/:patientId/addDesease', Controller.showAddPatientDeseaseForm);
+router.post('/hospital/patient/:patientId/addDesease', Controller.createPatientDesease);
 
 module.exports = router;

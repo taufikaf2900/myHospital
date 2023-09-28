@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Patient's Desease</title>
+</head>
+<body>
+  <%- include('navbar_taufik') %>
+  <h1>Add Patient's Desease</h1>
+  <h2>Patient's Name: <%= currentPatient.name %></h2>
+  <p style="font-weight: bold;">Previous Deseases:</p>
+  <% currentPatient.Deseases.forEach(desease => { %>
+    <p>&#8226; <%= desease.name %></p>
+  <% }) %>
+  <form action="/hospital/patient/<%= currentPatient.id %>/addDesease" method="post">
+    <div>
+      <label for="">Deseases</label> <br>
+      <select name="DeseaseId" id="">
+        <option value="">-- Select Desease --</option>
+        <% deseases.forEach(desease => { %>
+          <option value="<%= desease.id %>" <%= currentPatientDeseases.includes(desease.name) ? 'disabled' : ''%>><%= desease.name %></option>
+        <% }) %>
+      </select>
+    </div>
+    <br>
+    <button>Submit</button>
+    <button><a href="/hospital/patient/<%= currentPatient.id %>" style="text-decoration: none; color: #000;">Cancel</a></button>
+  </form>
+</body>
+</html>

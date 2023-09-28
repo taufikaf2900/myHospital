@@ -124,7 +124,7 @@ class Controller {
       include: [PatientDetail, Desease]
     })
     .then((patient) => {
-      res.render('patientDetail', { patient });
+      res.render('patientDetail_taufik', { patient });
     })
   }
 
@@ -157,7 +157,39 @@ class Controller {
       .catch((err) => {
         console.log(err);
         res.send(err);
+      });
+  }
+
+  static showAddPatientDeseaseForm(req, res) {
+    const { patientId } = req.params;
+    let currentPatient;
+    Patient.findByPk(patientId, { include: Desease })
+      .then((patient) => {
+        currentPatient = patient;
+        return Desease.findAll();
       })
+      .then((deseases) => {
+        const currentPatientDeseases = currentPatient.Deseases.map((deseases) => deseases.name);
+        res.render('addPatientDesease_taufik', { currentPatient, deseases, currentPatientDeseases });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send(err);
+      });
+  }
+
+  static createPatientDesease(req, res) {
+    const { DeseaseId } = req.body;
+    const { patientId } = req.params;
+
+    PatientDesease.create({ PatientId: patientId, DeseaseId })
+      .then(() => {
+        res.redirect(`/hospital/patient/${patientId}`);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send(err);
+      });
   }
 }
 
