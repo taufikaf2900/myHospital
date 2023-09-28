@@ -4,9 +4,10 @@ const Controller = require( '../controllers/controller_taufik' );
 const router = express.Router();
 
 router.get('/', Controller.showHomePage);
-router.get('/homepage/:userId/patient', Controller.findAllPatient);
-router.get('/homepage/:userId/patient/add', Controller.showAddPatientForm);
-router.post('/homepage/:userId/patient/add', Controller.createPatient);
-router.get('/homepage/:userId/patient/:patientId/delete', Controller.destroyPatient);
+router.get('/hospital/:userId/patient', Controller.findAllPatient);
+router.get('/hospital/:userId/patient/add', Controller.showAddPatientForm);
+router.post('/hospital/:userId/patient/add', Controller.createPatient);
+router.get('/hospital/:userId/patient/:patientId', Controller.showDetailPatient);
+router.get('/hospital/:userId/patient/:patientId/delete', Controller.destroyPatient);
 
 module.exports = router;

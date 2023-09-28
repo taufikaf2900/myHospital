@@ -78,16 +78,20 @@ class Controller {
         throw { name: 'error delete patient', msg: 'only patient with status recovered or died can be deleted'};
       })
       .then(() => {
-        res.redirect(`/homepage/1/patient?deletedPatient=${deletedPatien.name}`);
+        res.redirect(`/hospital/1/patient?deletedPatient=${deletedPatien.name}`);
       })
       .catch((err) => {
         if(err.name === 'error delete patient') {
-          res.redirect(`/homepage/1/patient?error=${err.msg}`);
+          res.redirect(`/hospital/1/patient?error=${err.msg}`);
         } else {
           console.log(err);
           res.send(err);
         }
       });
+  }
+
+  static showDetailPatient(req, res) {
+    res.render('patientDetail');
   }
 }
 

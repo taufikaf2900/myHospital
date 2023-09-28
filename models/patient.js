@@ -2,7 +2,6 @@
 const {
   Model
 } = require('sequelize');
-const Helper = require( '../helpers/helper' );
 module.exports = (sequelize, DataTypes) => {
   class Patient extends Model {
     /**
@@ -18,7 +17,11 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     get fullGender() {
-      return Helper.generateFullGender(this.gender);
+      if(this.gender === 'M') {
+        return 'Male';
+      };
+
+      return 'Female';
     }
   }
   Patient.init({
