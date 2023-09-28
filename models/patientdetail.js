@@ -13,6 +13,14 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       PatientDetail.belongsTo(models.Patient);
     }
+
+    static getTotalPatientByStatus(status) {
+      return PatientDetail.findOne({
+        attributes: [[sequelize.fn('COUNT', sequelize.col('status')), 'totalPatientByStatus']],
+        where: { status },
+        raw: true
+      });
+    }
   }
   PatientDetail.init({
     category: {

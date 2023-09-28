@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospital Statistic</title>
+</head>
+<body>
+  <%- include('navbar_taufik') %>
+  <h1>Hospital Statistic</h1>
+  <% if (statistics.length) { %>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Total Patient</th>
+          <th>Recovered Patient</th>
+          <th>Died Patient</th>
+          <th>Predicate</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% statistics.forEach((statistic, index) => { %>
+          <tr>
+            <td><%= ++index %></td>
+            <td><%= statistic.totalPatient %></td>
+            <td><%= statistic.recoveredPatient %></td>
+            <td><%= statistic.diedPatient %></td>
+            <td><%= statistic.predicate %></td>
+            <td><%= statistic.formatDate() %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p style="font-weight: bold;">There no statistic yet</p>
+  <% } %>
+</body>
+</html>

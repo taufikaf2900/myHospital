@@ -1,24 +1,40 @@
 const { Op } = require( 'sequelize' );
-const { Patient, PatientDetail, PatientMedicalRecord, Desease, PatientDesease } = require('../models');
+const { Patient, PatientDetail, PatientMedicalRecord, Desease, PatientDesease, sequelize, HospitalStatistic } = require('../models');
 const cron = require('node-cron');
+const Helper = require( '../helpers/helper_taufik' );
 
 class Controller {
   static showHomePage(req, res) {
     res.send('This is home page brother');
   }
 
-  static automaticGenerateStatistic(req, res) {
-    cron.schedule('*/30 * * * * *', () => {
-      const seconds = new Date().getSeconds();
-      // Patient.findAll()
-      //   .then((patients) => {
-      //     console.table(patients);
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //     res.send(err);
-      //   });
-      console.log(seconds);
+  static automaticGenerateStatistic() {
+    cron.schedule('*/60 * * * * *', () => {
+      let totalPatient;
+      let recoveredPatient;
+      Patient.findOne({
+        attributes: [[sequelize.fn('COUNT', sequelize.col('*')), 'totalPatient']],
+        raw: true
+      })
+        .then((result) => {
+          totalPatient = result.totalPatient;
+          return PatientDetail.getTotalPatientByStatus('Recover');
+        })
+        .then((result) => {
+          recoveredPatient = result.totalPatientByStatus;
+          return PatientDetail.getTotalPatientByStatus('Die');
+        })
+        .then((result) => {
+          const diedPatient = result.totalPatientByStatus;
+          let predicate = Helper.generateHospitalPredicate(recoveredPatient, diedPatient);
+          return HospitalStatistic.create({ totalPatient, recoveredPatient, diedPatient, predicate });
+        })
+        .then(() => {
+          console.log('Succes generate hospital statistic');
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     });
   }
 
@@ -48,6 +64,19 @@ class Controller {
     Patient.findAll(options)
       .then((patients) => {
         res.render('homepage_taufik', { patients, deletedPatient, error });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send(err);
+      });
+  }
+
+  static findAllStatistic(req, res) {
+    HospitalStatistic.findAll({
+      order: [['createdAt', 'DESC']]
+    })
+      .then((statistics) => {
+        res.render('hospitalStatistic_taufik', { statistics });
       })
       .catch((err) => {
         console.log(err);

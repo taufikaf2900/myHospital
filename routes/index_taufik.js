@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get('/', Controller.showHomePage);
 router.get('/hospital/patient', Controller.findAllPatient);
+router.get('/hospital/statistic', Controller.findAllStatistic);
 router.get('/hospital/patient/add', Controller.showAddPatientForm);
 router.post('/hospital/patient/add', Controller.createPatient);
 router.get('/hospital/patient/:patientId', Controller.showDetailPatient);
