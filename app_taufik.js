@@ -12,7 +12,7 @@ app.use(session({
   secret: 'secret',
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false }
+  cookie: { secure: false, sameSite: true }
 }))
 app.use(routes);
 
