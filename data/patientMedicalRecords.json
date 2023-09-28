@@ -1,0 +1,38 @@
+[
+  {
+    "date": "2023-09-26",
+    "condition": "Sangat buruk perlu adanya perawatan secara intensif",
+    "statusPerRecord": "Treated",
+    "PatientId": 1
+  },
+  {
+    "date": "2023-09-27",
+    "condition": "Sudah mulai membaik namun masih perlu perawatan lanjutan",
+    "statusPerRecord": "Treated",
+    "PatientId": 1
+  },
+  {
+    "date": "2023-09-28",
+    "condition": "Kondisi sudah sangat membaik dan sudah boleh pulang",
+    "statusPerRecord": "Recover",
+    "PatientId": 1
+  },
+  {
+    "date": "2023-09-26",
+    "condition": "Kondisi masih perlu peninjauan lebih lanjut",
+    "statusPerRecord": "Treated",
+    "PatientId": 2
+  },
+  {
+    "date": "2023-09-27",
+    "condition": "Kondisi memburuk perlu dilakukan operasi",
+    "statusPerRecord": "Treated",
+    "PatientId": 2
+  },
+  {
+    "date": "2023-09-28",
+    "condition": "Pasien sudah tidak bisa diselamatkan",
+    "statusPerRecord": "Die",
+    "PatientId": 2
+  }
+]

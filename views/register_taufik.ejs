@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register User</title>
+</head>
+<body style="height: 100vh; display: flex; justify-content: center; align-items: center;">
+  <div>
+    <h1>Register Here</h1>
+    <% if (duplicateError) { %>
+      <p style="color: #ff0000;"><%= error %></p>
+    <% } %>
+    <% if (validationErrors) { %>
+      <% validationErrors.split(',').forEach(error => { %>
+        <p style="color: #ff0000;"><%= error %></p>
+      <% }) %>
+    <% } %>
+    <form action="/register" method="post">
+      <div>
+        <label for="">Username</label> <br>
+        <input type="text" name="username" style="width: 300px; padding: 5px 8px;" placeholder="Ex: user123">
+      </div>
+      <br>
+      <div>
+        <label for="">Email</label> <br>
+        <input type="text" name="email" style="width: 300px; padding: 5px 8px;" placeholder="Ex: user12@gmail.com">
+      </div>
+      <br>
+      <div>
+        <label for="">Password</label> <br>
+        <input type="password" name="password" style="width: 300px; padding: 5px 8px;">
+      </div>
+      <br>
+      <div>
+        <label for="">Role</label> <br>
+        <input type="text" name="role" style="width: 300px; padding: 5px 8px;" placeholder="Ex: superadmin, doctor, guest">
+      </div>
+      <br>
+      <button style="cursor: pointer;">Submit</button>
+      <button><a href="/login" style="text-decoration: none; color: #000;">Cancel</a></button>
+    </form>
+  </div>
+</body>
+</html>

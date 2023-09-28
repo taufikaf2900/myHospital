@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Patient</title>
+</head>
+<body>
+  <%- include('navbar_taufik') %>
+  <h1>Edit Patient</h1>
+  <% if (errors) { %>
+    <% errors.split(',').forEach((error) => { %>
+      <p style="color: #ff0000; margin: 0;"><%= error %></p>
+    <% }) %>
+  <% } %>
+  <form action="/hospital/patient/<%= patient.id %>/edit" method="post" style="margin-top: 10px;">
+    <div>
+      <label for="">Name</label><br>
+      <input type="text" name="name" style="width: 300px; padding: 5px 8px;" value="<%= patient.name %>">
+    </div>
+    <br>
+    <div>
+      <label for="">Age</label><br>
+      <input type="number" name="age" style="width: 300px; padding: 5px 8px;" value="<%= patient.age %>">
+    </div>
+    <br>
+    <div>
+      <label for="">Gender</label><br>
+      <input type="text" name="gender" style="width: 300px; padding: 5px 8px;" value="<%= patient.gender %>">
+      <p style="font-size: 8px; margin-top: 0;">Fill with M or F</p>
+    </div>
+    <br>
+    <div>
+      <label for="">Category</label><br>
+      <select name="category">
+        <% ['BPJS', 'Non BPJS'].forEach(category => { %>
+          <option value="<%= category %>" <%= patient.PatientDetail.category === category ? 'selected' : '' %>><%= category %></option>
+        <% }) %>
+      </select>
+    </div>
+    <br>
+    <div>
+      <label for="">Status</label><br>
+      <select name="status">
+        <% ['Treated', 'Recover', 'Die'].forEach(status => { %>
+          <option value="<%= status %>" <%= patient.PatientDetail.status === status ? 'selected' : '' %>><%= status %></option>
+        <% }) %>
+      </select>
+    </div>
+    <br>
+    <div>
+      <label for="">Address</label><br>
+      <textarea name="address" cols="38" rows="10" style="padding: 8px;"><%= patient.PatientDetail.address %></textarea>
+    </div>
+    <br>
+    <div>
+      <label for="">Doctor</label><br>
+      <input type="text" name="doctor" style="width: 300px; padding: 5px 8px;" value="<%= patient.PatientDetail.doctor %>">
+    </div>
+    <br>
+    <button>Submit</button>
+    <button><a href="/hospital/patient/<%= patient.id %>" style="text-decoration: none; color: #000;">Cancel</a></button>
+  </form>
+</body>
+</html>

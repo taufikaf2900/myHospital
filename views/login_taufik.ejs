@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+</head>
+<body style="height: 100vh; display: flex; justify-content: center; align-items: center;">
+  <div>
+    <h1>Login</h1>
+    <% if (error) { %>
+      <p style="color: #ff0000;"><%= error %></p>
+    <% } %>
+    <% if (errorAuthentication) { %>
+      <p style="color: #ff0000;"><%= errorAuthentication %></p>
+    <% } %>
+    <form action="/login" method="post">
+      <div>
+        <label for="">Email</label> <br>
+        <input type="text" name="email" style="width: 300px; padding: 5px 8px;">
+      </div>
+      <br>
+      <div>
+        <label for="">Password</label> <br>
+        <input type="password" name="password" style="width: 300px; padding: 5px 8px;">
+      </div>
+      <br>
+      <button style="cursor: pointer;">Submit</button>
+      <button><a href="/" style="text-decoration: none; color: #000;">Back to Home</a></button>
+    </form>
+    <p>Don't have an account yet? <a href="/register">create one!</a></p>
+  </div>
+</body>
+</html>

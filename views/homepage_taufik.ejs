@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+</head>
+<body>
+  <%- include('navbar_taufik') %>
+  <h1>Patient List</h1>
+  <% if (deletedPatient) { %>
+    <p style="color: #ff0000;"><%= deletedPatient %> has been deleted</p>
+  <% } %>
+  <% if (error) { %>
+    <p style="color: #ff0000;"><%= error %></p>
+  <% } %>
+  <a href="/hospital/patient/add">Add Patient</a>
+  <form action="/hospital/patient" style="margin: 15px 0;">
+    <input type="text" name="status" placeholder="Search by status"> <span> And </span>
+    <input type="text" name="gender" placeholder="by gender">
+    <button>Search</button>
+  </form>
+  <% if (patients.length) { %>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% patients.forEach((patient, index) => { %>
+          <tr>
+            <td><%= ++index %></td>
+            <td><%= patient.name %></td>
+            <td><%= patient.age %></td>
+            <td><%= patient.fullGender %></td>
+            <td><%= patient.PatientDetail.status %></td>
+            <td>
+              <a href="/hospital/patient/<%= patient.id %>">Detail</a> ||
+              <a href="/hospital/patient/<%= patient.id %>/delete">Delete</a>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+      <p style="font-weight: bold;">There is no patient yet</p>
+  <% } %>
+</body>
+</html>

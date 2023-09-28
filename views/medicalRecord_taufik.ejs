@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Records</title>
+</head>
+<body>
+  <%- include('navbar_taufik') %>
+  <h1>Medical Records</h1>
+  <h2>Patient's Name: <%= patient.name %></h2>
+  <a href="/hospital/patient/<%= patient.id %>/medicalRecord/add">Add Medical Record</a>
+  <% if (patient.PatientMedicalRecords.length) { %>
+    <table border="1" style="margin: 10px 0;">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Deseases</th>
+          <th>Date</th>
+          <th>Condition</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% patient.PatientMedicalRecords.forEach((record, index) => { %>
+          <tr>
+            <td><%= ++index %></td>
+            <td>
+              <% patient.Deseases.forEach(desease => { %>
+                <p>&#8226; <%= desease.name %></p>
+              <% }) %>
+            </td>
+            <td><%= record.formatDate() %></td>
+            <td><%= record.condition %></td>
+            <td><%= record.statusPerRecord %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+      <p style="font-weight: bold;">There is no medical record yet</p>
+  <% } %>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Detail</title>
+</head>
+<body>
+  <%- include('navbar_taufik') %>
+  <h1>Patient's Detail</h1>
+  <a href="/hospital/patient/<%= patient.id %>/edit" style="margin-right: 10px;">Edit</a>
+  <a href="/hospital/patient/<%= patient.id %>/addDesease" style="margin-right: 10px;">Add Desease</a>
+  <a href="/hospital/patient/<%= patient.id %>/medicalRecord" style="margin-right: 10px;">Medical Record</a>
+  <p><span style="font-weight: bold;">Name: </span><%= patient.name %></p>
+  <p><span style="font-weight: bold;">Age: </span><%= patient.age %></p>
+  <p><span style="font-weight: bold;">Gender: </span><%= patient.fullGender %></p>
+  <p><span style="font-weight: bold;">Category: </span><%= patient.PatientDetail.category %></p>
+  <p><span style="font-weight: bold;">Address: </span><%= patient.PatientDetail.address %></p>
+  <p><span style="font-weight: bold;">Status: </span><%= patient.PatientDetail.status %></p>
+  <p><span style="font-weight: bold;">Penyakit: </span>
+    <% patient.Deseases.forEach(desease => { %>
+      <p>&#8226; <%= desease.name %></p>
+    <% }) %>
+  </p>
+  <p><span style="font-weight: bold;">Doctor: </span><%= patient.PatientDetail.doctor %></p>
+  <button><a href="/hospital/patient" style="text-decoration: none; color: #000;">Back</a></button>
+</body>
+</html>

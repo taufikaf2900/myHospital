@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Influenza",
+    "level": "Not dangerous"
+  },
+  {
+    "name": "Cancer",
+    "level": "Dangerous"
+  },
+  {
+    "name": "Tuberculosis",
+    "level": "Dangerous"
+  },
+  {
+    "name": "DBD",
+    "level": "Dangerous"
+  }
+]

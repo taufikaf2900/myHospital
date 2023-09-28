@@ -1,0 +1,16 @@
+[
+  {
+    "category": "BPJS",
+    "address": "Jln.xxx No.x, Kota yyy",
+    "doctor": "Ridwan",
+    "status": "Treated",
+    "PatientId": 1
+  },
+  {
+    "category": "Non BPJS",
+    "address": "Jln.yyy No.x, Kota zzz",
+    "doctor": "Anissa",
+    "status": "Recover",
+    "PatientId": 2
+  }
+]
