@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Patient</title>
+</head>
+<body>
+  <%- include('navbar_taufik') %>
+  <h1>Edit Patient</h1>
+  <form action="/hospital/patient/<%= patient.id %>/edit" method="post">
+    <div>
+      <label for="">Name</label><br>
+      <input type="text" name="name" style="width: 300px; padding: 5px 8px;" value="<%= patient.name %>">
+    </div>
+    <br>
+    <div>
+      <label for="">Age</label><br>
+      <input type="number" name="age" style="width: 300px; padding: 5px 8px;" value="<%= patient.age %>">
+    </div>
+    <br>
+    <div>
+      <label for="">Gender</label><br>
+      <select name="gender">
+        <option value="">-- Select Gender --</option>
+        <% ['Male', 'Female'].forEach(gender => { %>
+          <option value="<%= gender.charAt(0) %>" <%= patient.gender === gender.charAt(0) ? 'selected' : '' %>><%= gender %></option>
+        <% }) %>
+      </select>
+    </div>
+    <br>
+    <div>
+      <label for="">Category</label><br>
+      <select name="category">
+        <option value="">-- Select Category --</option>
+        <% ['BPJS', 'Non BPJS'].forEach(category => { %>
+          <option value="<%= category %>" <%= patient.PatientDetail.category === category ? 'selected' : '' %>><%= category %></option>
+        <% }) %>
+      </select>
+    </div>
+    <br>
+    <div>
+      <label for="">Status</label><br>
+      <select name="status">
+        <option value="">-- Select Status --</option>
+        <% ['Treatment', 'Recovered', 'Died'].forEach(status => { %>
+          <option value="<%= status %>" <%= patient.PatientDetail.status === status ? 'selected' : '' %>><%= status %></option>
+        <% }) %>
+      </select>
+    </div>
+    <br>
+    <div>
+      <label for="">Address</label><br>
+      <textarea name="address" cols="38" rows="10" style="padding: 8px;"><%= patient.PatientDetail.address %></textarea>
+    </div>
+    <br>
+    <div>
+      <label for="">Doctor</label><br>
+      <input type="text" name="doctor" style="width: 300px; padding: 5px 8px;" value="<%= patient.PatientDetail.doctor %>">
+    </div>
+    <br>
+    <button>Submit</button>
+  </form>
+</body>
+</html>

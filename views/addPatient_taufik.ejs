@@ -49,6 +49,16 @@
       <input type="text" name="doctor" style="width: 300px; padding: 5px 8px;">
     </div>
     <br>
+    <div>
+      <label for="">Desease</label><br>
+      <select name="DeseaseId">
+        <option value="">-- Select Desease --</option>
+        <% deseases.forEach(deseases => { %>
+          <option value="<%= deseases.id %>"><%= deseases.name %></option>
+        <% }) %>
+      </select>
+    </div>
+    <br>
     <button>Submit</button>
   </form>
 </body>

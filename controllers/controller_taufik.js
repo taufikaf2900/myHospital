@@ -1,9 +1,25 @@
 const { Op } = require( 'sequelize' );
-const { Patient, PatientDetail, PatientMedicalRecord } = require('../models');
+const { Patient, PatientDetail, PatientMedicalRecord, Desease, PatientDesease } = require('../models');
+const cron = require('node-cron');
 
 class Controller {
   static showHomePage(req, res) {
     res.send('This is home page brother');
+  }
+
+  static automaticGenerateStatistic(req, res) {
+    cron.schedule('*/30 * * * * *', () => {
+      const seconds = new Date().getSeconds();
+      // Patient.findAll()
+      //   .then((patients) => {
+      //     console.table(patients);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //     res.send(err);
+      //   });
+      console.log(seconds);
+    });
   }
 
   static findAllPatient(req, res) {
@@ -40,17 +56,29 @@ class Controller {
   }
 
   static showAddPatientForm(req, res) {
-    res.render('addPatient_taufik');
+    Desease.findAll()
+      .then((deseases) => {
+        res.render('addPatient_taufik', { deseases });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send(err);
+      });
   }
 
   static createPatient(req, res) {
-    const { name, age, gender, category, address, doctor } = req.body;
+    const { name, age, gender, category, address, doctor, DeseaseId } = req.body;
+    let PatientId;
     Patient.create({ name, age, gender })
-      .then((result) => {
-        return PatientDetail.create({ category, address, doctor, PatientId: result.id });
+      .then((patient) => {
+        PatientId = patient.id
+        return PatientDetail.create({ category, address, doctor, PatientId });
       })
       .then(() => {
-        res.redirect('/homepage/patient');
+        return PatientDesease.create({ PatientId, DeseaseId });
+      })
+      .then(() => {
+        res.redirect('/hospital/patient');
       })
       .catch((err) => {
         console.log(err);
@@ -91,7 +119,29 @@ class Controller {
   }
 
   static showDetailPatient(req, res) {
-    res.render('patientDetail');
+    const { patientId } = req.params;
+    Patient.findByPk(patientId, {
+      include: [PatientDetail, Desease]
+    })
+    .then((patient) => {
+      res.render('patientDetail', { patient });
+    })
+  }
+
+  static showEditPatientForm(req, res) {
+    const { patientId } = req.params;
+    Patient.findByPk(patientId, {
+      include: {
+        model: PatientDetail
+      }
+    })
+    .then((patient) => {
+      res.render('editPatient_taufik' , { patient });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
+    });
   }
 }
 

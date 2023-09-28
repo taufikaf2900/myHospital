@@ -7,20 +7,21 @@
 </head>
 <body>
   <%- include('navbar_taufik') %>
-  <h1>Patient's Detail:</h1>
-  <a href="/hospital/patient/:patientId/edit">Edit</a>
-  <a href="/hospital/patient/:patientId/addDesease">Add Desease</a>
-  <a href="/hospital/patient/:patientId/medical-record">Medical Record</a>
-  <p><span style="font-weight: bold;">Name:</span></p>
-  <p><span style="font-weight: bold;">Age:</span></p>
-  <p><span style="font-weight: bold;">Gender:</span></p>
-  <p><span style="font-weight: bold;">Category:</span></p>
-  <p><span style="font-weight: bold;">Address:</span></p>
-  <p><span style="font-weight: bold;">Status:</span></p>
-  <p><span style="font-weight: bold;">Penyakit:</span>
-    <p>&#8226; Penyakit 1</p>
-    <p>&#8226; Penyakit 2</p>
+  <h1>Patient's Detail</h1>
+  <a href="/hospital/patient/<%= patient.id %>/edit">Edit</a>
+  <a href="/hospital/patient/<%= patient.id %>/addDesease">Add Desease</a>
+  <a href="/hospital/patient/<%= patient.id %>/medical-record">Medical Record</a>
+  <p><span style="font-weight: bold;">Name: </span><%= patient.name %></p>
+  <p><span style="font-weight: bold;">Age: </span><%= patient.age %></p>
+  <p><span style="font-weight: bold;">Gender: </span><%= patient.fullGender %></p>
+  <p><span style="font-weight: bold;">Category: </span><%= patient.PatientDetail.category %></p>
+  <p><span style="font-weight: bold;">Address: </span><%= patient.PatientDetail.address %></p>
+  <p><span style="font-weight: bold;">Status: </span><%= patient.PatientDetail.status %></p>
+  <p><span style="font-weight: bold;">Penyakit: </span>
+    <% patient.Deseases.forEach(desease => { %>
+      <p>&#8226; <%= desease.name %></p>
+    <% }) %>
   </p>
-  <p><span style="font-weight: bold;">Doctor:</span>
+  <p><span style="font-weight: bold;">Doctor:</span><%= patient.PatientDetail.doctor %></p>
 </body>
 </html>

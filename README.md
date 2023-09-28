@@ -18,5 +18,6 @@
 | POST   | /hospital/patient/:patientId/edit                    | Mengupdate data pasien berdasarkan id pasien                        |
 | POST   | /hospital/patient/:patientId/addDesease              | Menambah penyakit pasien                                            |
 | GET    | /hospital/patient/:patientId/medical-record          | Menampilkan medical record pasien berdasarkan id nya                |
-| POST   | /hospital/patient/:patientId/medical-record          | Mengubah medical record dari pasien berdasarkan id nya              |
+| GET    | /hospital/patient/:patientId/medical-record/add      | Mengubah medical record dari pasien berdasarkan id nya              |
+| POST   | /hospital/patient/:patientId/medical-record/add      | Mengubah medical record dari pasien berdasarkan id nya              |
 | GET    | /logout                                              | Melakukan logout dan akan di redirect ke halaman login              |
