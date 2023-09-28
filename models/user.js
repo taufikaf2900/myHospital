@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const bcrypt = require('bcryptjs');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -68,14 +69,20 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'Role is required'
         },
         isIn: {
-          args: [['Super Admin', 'Doctor', 'Patient']],
-          msg: 'Allowed Role are Super Admin, Doctor, and Patient'
+          args: [['super admin', 'doctor', 'patient']],
+          msg: 'Allowed Role: super admin - doctor - patient'
         }
       }
     }
   }, {
     sequelize,
     modelName: 'User',
+  });
+
+  User.beforeCreate((instance) => {
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPassword = bcrypt.hashSync(instance.password, salt);
+    instance.password = hashedPassword;
   });
   return User;
 };

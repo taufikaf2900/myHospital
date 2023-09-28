@@ -1,6 +1,6 @@
 const express = require('express');
 const routes = require('./routes/index_taufik');
-const Controller = require( './controllers/controller_taufik' );
+const HospitalController = require( './controllers/hospital' );
 
 const app = express();
 const port = 3000;
@@ -11,5 +11,5 @@ app.use(routes);
 
 app.listen(port, () => {
   console.log(`App is running on port ${port}`);
-  Controller.automaticGenerateStatistic();
+  HospitalController.automaticGenerateStatistic();
 });
