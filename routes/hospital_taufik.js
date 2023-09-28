@@ -13,7 +13,7 @@ router.get('/patient/add', HospitalController.showAddPatientForm);
 router.post('/patient/add', roleManipulateAccess, HospitalController.createPatient);
 router.get('/patient/:patientId', HospitalController.showDetailPatient);
 router.get('/patient/:patientId/edit', HospitalController.showEditPatientForm);
-router.post('/patient/:patientId/edit', HospitalController.updatePatient);
+router.post('/patient/:patientId/edit', roleManipulateAccess, HospitalController.updatePatient);
 router.get('/patient/:patientId/delete', roleManipulateAccess, HospitalController.destroyPatient);
 router.get('/patient/:patientId/addDesease', HospitalController.showAddPatientDeseaseForm);
 router.post('/patient/:patientId/addDesease', roleManipulateAccess, HospitalController.createPatientDesease);
