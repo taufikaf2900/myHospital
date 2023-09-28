@@ -14,8 +14,8 @@
   <% if (error) { %>
     <p style="color: #ff0000;"><%= error %></p>
   <% } %>
-  <a href="/hospital/1/patient/add">Add Patient</a>
-  <form action="/hospital/1/patient" style="margin: 15px 0;">
+  <a href="/hospital/patient/add">Add Patient</a>
+  <form action="/hospital/patient" style="margin: 15px 0;">
     <input type="text" name="status" placeholder="Search by status"> <span> And </span>
     <input type="text" name="gender" placeholder="by gender">
     <button>Search</button>
@@ -40,8 +40,8 @@
           <td><%= patient.fullGender %></td>
           <td><%= patient.PatientDetail.status %></td>
           <td>
-            <a href="/hospital/1/patient/<%= patient.id %>">Detail</a> ||
-            <a href="/hospital/1/patient/<%= patient.id %>/delete">Delete</a>
+            <a href="/hospital/patient/<%= patient.id %>">Detail</a> ||
+            <a href="/hospital/patient/<%= patient.id %>/delete">Delete</a>
           </td>
         </tr>
       <% }) %>

@@ -50,7 +50,7 @@ class Controller {
         return PatientDetail.create({ category, address, doctor, PatientId: result.id });
       })
       .then(() => {
-        res.redirect('/homepage/1/patient');
+        res.redirect('/homepage/patient');
       })
       .catch((err) => {
         console.log(err);
@@ -78,11 +78,11 @@ class Controller {
         throw { name: 'error delete patient', msg: 'only patient with status recovered or died can be deleted'};
       })
       .then(() => {
-        res.redirect(`/hospital/1/patient?deletedPatient=${deletedPatien.name}`);
+        res.redirect(`/hospital/patient?deletedPatient=${deletedPatien.name}`);
       })
       .catch((err) => {
         if(err.name === 'error delete patient') {
-          res.redirect(`/hospital/1/patient?error=${err.msg}`);
+          res.redirect(`/hospital/patient?error=${err.msg}`);
         } else {
           console.log(err);
           res.send(err);

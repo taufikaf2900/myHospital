@@ -7,9 +7,20 @@
 </head>
 <body>
   <%- include('navbar_taufik') %>
-  <h1>Patient's Name:</h1>
-  <a href="/hospital/:userId/patient/:patientId/edit">Edit</a>
-  <a href="/hospital/:userId/patient/:patientId/medical-record">Medical Record</a>
-  <h1>Detail Patient Here</h1>
+  <h1>Patient's Detail:</h1>
+  <a href="/hospital/patient/:patientId/edit">Edit</a>
+  <a href="/hospital/patient/:patientId/addDesease">Add Desease</a>
+  <a href="/hospital/patient/:patientId/medical-record">Medical Record</a>
+  <p><span style="font-weight: bold;">Name:</span></p>
+  <p><span style="font-weight: bold;">Age:</span></p>
+  <p><span style="font-weight: bold;">Gender:</span></p>
+  <p><span style="font-weight: bold;">Category:</span></p>
+  <p><span style="font-weight: bold;">Address:</span></p>
+  <p><span style="font-weight: bold;">Status:</span></p>
+  <p><span style="font-weight: bold;">Penyakit:</span>
+    <p>&#8226; Penyakit 1</p>
+    <p>&#8226; Penyakit 2</p>
+  </p>
+  <p><span style="font-weight: bold;">Doctor:</span>
 </body>
 </html>
