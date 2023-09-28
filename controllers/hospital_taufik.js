@@ -1,7 +1,7 @@
 const { Op } = require( 'sequelize' );
 const { Patient, PatientDetail, PatientMedicalRecord, Desease, PatientDesease, sequelize, HospitalStatistic } = require('../models');
 const cron = require('node-cron');
-const Helper = require( '../helpers/helper_taufik');
+const Helper = require('../helpers/helper_taufik');
 
 class HospitalController {
   static redirectToHospitalMainPage(req, res) {

@@ -2,7 +2,7 @@
 const {
   Model
 } = require('sequelize');
-const Helper = require( '../helpers/helper_taufik' );
+const Helper = require('../helpers/helper_taufik');
 module.exports = (sequelize, DataTypes) => {
   class HospitalStatistic extends Model {
     /**
