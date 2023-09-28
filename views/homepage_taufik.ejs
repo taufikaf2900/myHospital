@@ -20,32 +20,36 @@
     <input type="text" name="gender" placeholder="by gender">
     <button>Search</button>
   </form>
-  <table border="1">
-    <thead>
-      <tr>
-        <th>No.</th>
-        <th>Name</th>
-        <th>Age</th>
-        <th>Gender</th>
-        <th>Status</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% patients.forEach((patient, index) => { %>
+  <% if (patients.length) { %>
+    <table border="1">
+      <thead>
         <tr>
-          <td><%= ++index %></td>
-          <td><%= patient.name %></td>
-          <td><%= patient.age %></td>
-          <td><%= patient.fullGender %></td>
-          <td><%= patient.PatientDetail.status %></td>
-          <td>
-            <a href="/hospital/patient/<%= patient.id %>">Detail</a> ||
-            <a href="/hospital/patient/<%= patient.id %>/delete">Delete</a>
-          </td>
+          <th>No.</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Status</th>
+          <th>Action</th>
         </tr>
-      <% }) %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% patients.forEach((patient, index) => { %>
+          <tr>
+            <td><%= ++index %></td>
+            <td><%= patient.name %></td>
+            <td><%= patient.age %></td>
+            <td><%= patient.fullGender %></td>
+            <td><%= patient.PatientDetail.status %></td>
+            <td>
+              <a href="/hospital/patient/<%= patient.id %>">Detail</a> ||
+              <a href="/hospital/patient/<%= patient.id %>/delete">Delete</a>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+      <p style="font-weight: bold;">There is no patient yet</p>
+  <% } %>
 </body>
 </html>

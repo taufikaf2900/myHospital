@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const Helper = require( '../helpers/helper_taufik' );
 module.exports = (sequelize, DataTypes) => {
   class PatientMedicalRecord extends Model {
     /**
@@ -12,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       PatientMedicalRecord.belongsTo(models.Patient);
+    }
+
+    formatDate() {
+      return Helper.formattedDate(this.date);
     }
   }
   PatientMedicalRecord.init({
@@ -37,10 +42,22 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: 'Date is required'
+          msg: 'Condition is required'
         },
         notEmpty: {
-          msg: 'Date is required'
+          msg: 'Condition is required'
+        }
+      }
+    },
+    statusPerRecord: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Status per record is required'
+        },
+        notEmpty: {
+          msg: 'Status per record is required'
         }
       }
     },

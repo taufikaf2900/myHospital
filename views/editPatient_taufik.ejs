@@ -42,7 +42,7 @@
     <div>
       <label for="">Status</label><br>
       <select name="status">
-        <% ['Treatment', 'Recovered', 'Died'].forEach(status => { %>
+        <% ['Treated', 'Recover', 'Die'].forEach(status => { %>
           <option value="<%= status %>" <%= patient.PatientDetail.status === status ? 'selected' : '' %>><%= status %></option>
         <% }) %>
       </select>

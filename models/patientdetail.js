@@ -59,7 +59,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   PatientDetail.beforeCreate((instance) => {
-    instance.status = 'Treatment';
+    instance.status = 'Treated';
   });
   
   return PatientDetail;

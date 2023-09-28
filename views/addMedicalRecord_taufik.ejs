@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Medical Record</title>
+</head>
+<body>
+  <%- include('navbar_taufik') %>
+  <h1>Add New Medical Record</h1>
+  <h2>Patient's Name: <%= patient.name %></h2>
+  <% if (errors) { %>
+    <% errors.split(',').forEach((error) => { %>
+      <p style="margin: 0; color: #ff0000;"><%= error %></p>
+    <% }) %>
+  <% } %>
+  <form action="/hospital/patient/<%= patient.id %>/medicalRecord/add" method="post" style="margin-top: 10px;">
+    <div>
+      <label for="">Date</label><br>
+      <input type="date" name="date">
+    </div>
+    <br>
+    <div>
+      <label for="">Condition</label><br>
+      <textarea name="condition" cols="30" rows="5" style="padding: 8px;"></textarea>
+    </div>
+    <br>
+    <div>
+      <label for="">Status Per Record</label><br>
+      <select name="statusPerRecord">
+        <option value="">-- Select Status Per Record --</option>
+        <% ['Treated', 'Recover', 'Die'].forEach((status) => { %>
+          <option value="<%= status %>"><%= status %></option>
+        <% }) %>
+      </select>
+    </div>
+    <br>
+    <button>Submit</button>
+    <button><a href="/hospital/patient/<%= patient.id %>" style="text-decoration: none; color: #000;">Cancel</a></button>
+  </form>
+</body>
+</html>

@@ -105,11 +105,11 @@ class Controller {
         deletedPatien = patient;
         const status = patient.PatientDetail.status
 
-        if(status === 'Recovered' || status === 'Died') {
+        if(status === 'Recover' || status === 'Die') {
           return patient.destroy();
         }
         
-        throw { name: 'error delete patient', msg: 'only patient with status recovered or died can be deleted'};
+        throw { name: 'error delete patient', msg: 'only patient with status recover or die can be deleted'};
       })
       .then(() => {
         res.redirect(`/hospital/patient?deletedPatient=${deletedPatien.name}`);
@@ -201,6 +201,63 @@ class Controller {
       .catch((err) => {
         console.log(err);
         res.send(err);
+      });
+  }
+
+  static findMedicalRecord(req, res) {
+    const { patientId } = req.params;
+    Patient.findByPk(patientId, {
+      include: [
+        PatientDetail, 
+        {
+          model: PatientMedicalRecord,
+        }, 
+        Desease
+      ],
+      order: [[PatientMedicalRecord, 'date', 'DESC']]
+    })
+      .then((patient) => {
+        res.render('medicalRecord_taufik', { patient });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send(err);
+      });
+  }
+
+  static showAddMedicalRecordForm(req, res) {
+    const { patientId } = req.params;
+    const { errors } = req.query;
+    Patient.findByPk(patientId, {
+      include: {
+        model: PatientDetail,
+        attributes: ['status']
+      }
+    })
+      .then((patient) => {
+        res.render('addMedicalRecord_taufik', { patient, errors });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send(err);
+      });
+  }
+
+  static createMedicalRecord(req, res) {
+    const { patientId } = req.params;
+    const { date, condition, statusPerRecord } = req.body;
+    PatientMedicalRecord.create({ date, condition, statusPerRecord, PatientId: patientId })
+      .then(() => {
+        res.redirect(`/hospital/patient/${patientId}/medicalRecord`);
+      })
+      .catch((err) => {
+        if(err.name === 'SequelizeValidationError') {
+          const errors = err.errors.map((error) => error.message);
+          res.redirect(`/hospital/patient/${patientId}/medicalRecord/add?errors=${errors}`);
+        } else {
+          console.log(err);
+          res.send(err);
+        }
       });
   }
 }
