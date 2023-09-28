@@ -9,7 +9,7 @@ class HospitalController {
   }
 
   static automaticGenerateStatistic() {
-    cron.schedule('*/60 10 * * * *', () => {
+    cron.schedule('*/60 * * * * *', () => {
       let totalPatient;
       let recoveredPatient;
       Patient.findOne({

@@ -1,22 +1,28 @@
-## APP ROUTES
+# MY HOSPITAL APP
 
-| Method | Route                                                | Description                                                         |
-|--------|------------------------------------------------------|---------------------------------------------------------------------|
-| GET    | /                                                    | Menampilkan halaman home `Landing page`                             |
-| GET    | /register                                            | Menampilkan form register                                           |
-| POST   | /register                                            | Membuat user baru                                                   |
-| GET    | /login                                               | Menampilkan form untuk login                                        |
-| POST   | /login                                               | Melakukan login                                                     |
-| GET    | /hospital/patient                                    | Menampilkan seluruh pasien setelah berhasil login                   |
-| GET    | /hospital/statistic                                  | Menampilkan statistic rumah sakit                                   |
-| GET    | /hospital/patient/add                                | Menampilkan form untuk menambahkan pasien baru                      |
-| POST   | /hospital/patient/add                                | Menambahkan pasien baru                                             |
-| GET    | /hospital/patient/:patientId                         | Menampilkan detail pasien berdasarkan id pasein                     |
-| GET    | /hospital/patient/:patientId/delete                  | Menghapus pasien berdasarkan id pasient                             |
-| GET    | /hospital/patient/:patientId/edit                    | Menampilkan form untuk mengedit data pasien berdasarkan id nya      |
-| POST   | /hospital/patient/:patientId/edit                    | Mengupdate data pasien berdasarkan id pasien                        |
-| POST   | /hospital/patient/:patientId/addDesease              | Menambah penyakit pasien                                            |
-| GET    | /hospital/patient/:patientId/medical-record          | Menampilkan medical record pasien berdasarkan id nya                |
-| GET    | /hospital/patient/:patientId/medical-record/add      | Mengubah medical record dari pasien berdasarkan id nya              |
-| POST   | /hospital/patient/:patientId/medical-record/add      | Mengubah medical record dari pasien berdasarkan id nya              |
-| GET    | /logout                                              | Melakukan logout dan akan di redirect ke halaman login              |
+### APP OVERVIEW
+
+### HOW TO RUN THE APP
+
+### APP ROUTES
+
+| Method | Route                                           | Description                                                              |
+|--------|-------------------------------------------------|--------------------------------------------------------------------------|
+| GET    | /                                               | Display `home page` or `Landing page`                                    |
+| GET    | /register                                       | Display `register page`                                                  |
+| POST   | /register                                       | Create new user                                                          |
+| GET    | /login                                          | Display `login page`                                                     |
+| POST   | /login                                          | Do Login                                                                 |
+| GET    | /hospital/patient                               | Display all patient                                                      |
+| GET    | /hospital/statistic                             | Display hospital statistic                                               |
+| GET    | /hospital/patient/add                           | Display page for create or add new patient                               |
+| POST   | /hospital/patient/add                           | Create or add new patient                                                |
+| GET    | /hospital/patient/:patientId                    | Dispay details of a particular patient                                   |
+| GET    | /hospital/patient/:patientId/delete             | Delete particular patient                                                |
+| GET    | /hospital/patient/:patientId/edit               | Display page for editing particular patient                              |
+| POST   | /hospital/patient/:patientId/edit               | Update particular patient                                                |
+| POST   | /hospital/patient/:patientId/addDesease         | Adding new desease to particular patient                                 |
+| GET    | /hospital/patient/:patientId/medicalRecord      | Display medical records of particular patient                            |
+| GET    | /hospital/patient/:patientId/medicalRecord/add  | Display page for create or add new medical record or particular patient  |
+| POST   | /hospital/patient/:patientId/medicalRecord/add  | Create or add new medical record for particular patien                   |
+| GET    | /logout                                         | Do Logout                                                                |

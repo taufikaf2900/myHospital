@@ -69,8 +69,8 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'Role is required'
         },
         isIn: {
-          args: [['superadmin', 'doctor', 'patient']],
-          msg: 'Allowed Role: superadmin - doctor - patient'
+          args: [['superadmin', 'doctor', 'guest']],
+          msg: 'Allowed Role: superadmin - doctor - guest'
         }
       }
     }
