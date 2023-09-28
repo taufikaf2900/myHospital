@@ -11,6 +11,6 @@ module.exports = {
   },
 
   down (queryInterface, Sequelize) {
-    return queryInterface.removeColumn('PatientMedicalRecords');
+    return queryInterface.removeColumn('PatientMedicalRecords', 'statusPerRecord');
   }
 };

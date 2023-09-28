@@ -15,7 +15,7 @@ module.exports = {
         defaultValue: new Date()
       },
       condition: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false
       },
       PasienId: {

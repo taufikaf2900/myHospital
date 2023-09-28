@@ -1,14 +1,14 @@
 [
   {
     "category": "BPJS",
-    "address": "xxx",
+    "address": "Jln.xxx No.x, Kota yyy",
     "doctor": "Ridwan",
     "status": "Treatment",
     "PatientId": 1
   },
   {
     "category": "Non BPJS",
-    "address": "yyy",
+    "address": "Jln.yyy No.x, Kota zzz",
     "doctor": "Anissa",
     "status": "Recovered",
     "PatientId": 2
