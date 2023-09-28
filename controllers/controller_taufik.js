@@ -56,9 +56,10 @@ class Controller {
   }
 
   static showAddPatientForm(req, res) {
+    const { errors } = req.query;
     Desease.findAll()
       .then((deseases) => {
-        res.render('addPatient_taufik', { deseases });
+        res.render('addPatient_taufik', { deseases, errors });
       })
       .catch((err) => {
         console.log(err);
@@ -81,8 +82,13 @@ class Controller {
         res.redirect('/hospital/patient');
       })
       .catch((err) => {
-        console.log(err);
-        res.send(err);
+        if(err.name === 'SequelizeValidationError') {
+          const errors = err.errors.map((error) => error.message);
+          res.redirect(`/hospital/patient/add?errors=${errors}`);
+        } else {
+          console.log(err);
+          res.send(err);
+        }
       });
   }
 
@@ -130,13 +136,14 @@ class Controller {
 
   static showEditPatientForm(req, res) {
     const { patientId } = req.params;
+    const { errors } = req.query;
     Patient.findByPk(patientId, {
       include: {
         model: PatientDetail
       }
     })
     .then((patient) => {
-      res.render('editPatient_taufik' , { patient });
+      res.render('editPatient_taufik' , { patient, errors });
     })
     .catch((err) => {
       console.log(err);
@@ -155,8 +162,13 @@ class Controller {
         res.redirect(`/hospital/patient/${patientId}`);
       })
       .catch((err) => {
-        console.log(err);
-        res.send(err);
+        if(err.name === 'SequelizeValidationError') {
+          const errors = err.errors.map((error) => error.message);
+          res.redirect(`/hospital/patient/${patientId}/edit?errors=${errors}`);
+        } else {
+          console.log(err);
+          res.send(err);
+        }
       });
   }
 

@@ -15,8 +15,35 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   PatientMedicalRecord.init({
-    date: DataTypes.DATE,
-    condition: DataTypes.STRING,
+    date: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Date is required'
+        },
+        notEmpty: {
+          msg: 'Date is required'
+        },
+        isValidDate(value) {
+          if(value > new Date()) {
+            throw new Error('Maximum date for created record is today')
+          }
+        }
+      }
+    },
+    condition: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Date is required'
+        },
+        notEmpty: {
+          msg: 'Date is required'
+        }
+      }
+    },
     PatientId: DataTypes.INTEGER
   }, {
     sequelize,

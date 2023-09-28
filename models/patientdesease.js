@@ -15,7 +15,18 @@ module.exports = (sequelize, DataTypes) => {
   }
   PatientDesease.init({
     PatientId: DataTypes.INTEGER,
-    DeseaseId: DataTypes.INTEGER
+    DeseaseId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Desease is required'
+        },
+        notEmpty: {
+          msg: 'Desease is required'
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'PatientDesease',

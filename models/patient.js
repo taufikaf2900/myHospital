@@ -25,9 +25,49 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Patient.init({
-    name: DataTypes.STRING,
-    age: DataTypes.INTEGER,
-    gender: DataTypes.STRING
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Name is required'
+        },
+        notEmpty: {
+          msg: 'Name is required'
+        }
+      }
+    },
+    age: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Age is required'
+        },
+        notEmpty: {
+          msg: 'Age is required'
+        }
+      }
+    },
+    gender: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Gender is required'
+        },
+        notEmpty: {
+          msg: 'Gender is required'
+        },
+        len: {
+          args: [0, 1],
+          msg: 'Gender must only one character M for Male of F for Female'
+        },
+        isUppercase: {
+          msg: 'Gender must be filled with uppercase character'
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Patient',

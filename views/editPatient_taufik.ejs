@@ -8,7 +8,12 @@
 <body>
   <%- include('navbar_taufik') %>
   <h1>Edit Patient</h1>
-  <form action="/hospital/patient/<%= patient.id %>/edit" method="post">
+  <% if (errors) { %>
+    <% errors.split(',').forEach((error) => { %>
+      <p style="color: #ff0000; margin: 0;"><%= error %></p>
+    <% }) %>
+  <% } %>
+  <form action="/hospital/patient/<%= patient.id %>/edit" method="post" style="margin-top: 10px;">
     <div>
       <label for="">Name</label><br>
       <input type="text" name="name" style="width: 300px; padding: 5px 8px;" value="<%= patient.name %>">
@@ -21,18 +26,13 @@
     <br>
     <div>
       <label for="">Gender</label><br>
-      <select name="gender">
-        <option value="">-- Select Gender --</option>
-        <% ['Male', 'Female'].forEach(gender => { %>
-          <option value="<%= gender.charAt(0) %>" <%= patient.gender === gender.charAt(0) ? 'selected' : '' %>><%= gender %></option>
-        <% }) %>
-      </select>
+      <input type="text" name="gender" style="width: 300px; padding: 5px 8px;" value="<%= patient.gender %>">
+      <p style="font-size: 8px; margin-top: 0;">Fill with M or F</p>
     </div>
     <br>
     <div>
       <label for="">Category</label><br>
       <select name="category">
-        <option value="">-- Select Category --</option>
         <% ['BPJS', 'Non BPJS'].forEach(category => { %>
           <option value="<%= category %>" <%= patient.PatientDetail.category === category ? 'selected' : '' %>><%= category %></option>
         <% }) %>
@@ -42,7 +42,6 @@
     <div>
       <label for="">Status</label><br>
       <select name="status">
-        <option value="">-- Select Status --</option>
         <% ['Treatment', 'Recovered', 'Died'].forEach(status => { %>
           <option value="<%= status %>" <%= patient.PatientDetail.status === status ? 'selected' : '' %>><%= status %></option>
         <% }) %>

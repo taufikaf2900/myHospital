@@ -15,9 +15,42 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   PatientDetail.init({
-    category: DataTypes.STRING,
-    address: DataTypes.STRING,
-    doctor: DataTypes.STRING,
+    category: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Category is required'
+        },
+        notEmpty: {
+          msg: 'Category is required'
+        }
+      }
+    },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Address is required'
+        },
+        notEmpty: {
+          msg: 'Address is required'
+        }
+      }
+    },
+    doctor: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Doctor is required'
+        },
+        notEmpty: {
+          msg: 'Doctor is required'
+        }
+      }
+    },
     status: DataTypes.STRING,
     PatientId: DataTypes.INTEGER
   }, {
