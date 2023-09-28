@@ -143,6 +143,22 @@ class Controller {
       res.send(err);
     });
   }
+
+  static updatePatient(req, res) {
+    const { patientId } = req.params;
+    const { name, age, gender, category, status, address, doctor } = req.body;
+    Patient.update({ name, age, gender }, { where: { id: patientId } })
+      .then(() => {
+        return PatientDetail.update({ category, status, address, doctor }, { where: { PatientId: patientId } });
+      })
+      .then(() => {
+        res.redirect(`/hospital/patient/${patientId}`);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send(err);
+      })
+  }
 }
 
 module.exports = Controller;

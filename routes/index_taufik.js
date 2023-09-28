@@ -9,7 +9,7 @@ router.get('/hospital/patient/add', Controller.showAddPatientForm);
 router.post('/hospital/patient/add', Controller.createPatient);
 router.get('/hospital/patient/:patientId', Controller.showDetailPatient);
 router.get('/hospital/patient/:patientId/edit', Controller.showEditPatientForm);
-router.post('/hospital/patient/:patientId/edit', Controller.showDetailPatient);
+router.post('/hospital/patient/:patientId/edit', Controller.updatePatient);
 router.get('/hospital/patient/:patientId/delete', Controller.destroyPatient);
 
 module.exports = router;
