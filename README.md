@@ -4,6 +4,13 @@
 This is simple web application that can be used for manage patient's data such as create, update, read, delete, etc. This application implements register, login, and role system to differentiate each user's access to application features
 
 ### HOW TO RUN THE APP
+1. npm install
+2. npx sequelize db:create
+3. npx sequelize db:migrate
+4. npx sequelize db:seed:all
+5. node --watch app.js
+6. Enjoy the app
+
 
 ### APP ROUTES
 
