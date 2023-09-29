@@ -63,7 +63,7 @@ class HospitalController {
 
     Patient.findAll(options)
       .then((patients) => {
-        res.render('allPatient', { patients, deletedPatient, error, query: req.query });
+        res.render('allPatient', { patients, deletedPatient, error });
       })
       .catch((err) => {
         console.log(err);
