@@ -1,9 +1,9 @@
 const express = require('express');
-const HomeController = require( '../controllers/home' );
+const HomeController = require('../controllers/home');
 const hospitalRoute = require('./hospital');
 const registerRoute = require('./register');
 const loginRoute = require('./login');
-const LogoutController = require( '../controllers/logout' );
+const LogoutController = require('../controllers/logout');
 const userAuthentication = require('../middlewares/userAuthentication');
 
 const router = express.Router();
