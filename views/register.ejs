@@ -9,7 +9,7 @@
   <div>
     <h1>Register Here</h1>
     <% if (duplicateError) { %>
-      <p style="color: #ff0000;"><%= error %></p>
+      <p style="color: #ff0000;"><%= duplicateError %></p>
     <% } %>
     <% if (validationErrors) { %>
       <% validationErrors.split(',').forEach(error => { %>
