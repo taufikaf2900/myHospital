@@ -1,11 +1,11 @@
-class Controller {
+class HomeController {
   static showHomePage(req, res) {
     res.render('home');
   }
 
-  static redirectToLoginPage(req, res) {
-    res.redirect('/login');
+  static notFoundPage(req, res) {
+    res.render('pageNotFound');
   }
 }
 
-module.exports = Controller;
+module.exports = HomeController;

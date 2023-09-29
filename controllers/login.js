@@ -3,8 +3,8 @@ const bcrypt = require('bcryptjs');
 
 class LoginController {
   static showLoginForm(req, res) {
-    const { error, errorAuthentication } = req.query;
-    res.render('login', { error, errorAuthentication });
+    const { error } = req.query;
+    res.render('login', { error });
   }
 
   static login(req, res) {

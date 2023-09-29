@@ -1,5 +1,5 @@
 const express = require('express');
-const Controller = require('../controllers/home');
+const HomeController = require( '../controllers/home' );
 const hospitalRoute = require('./hospital');
 const registerRoute = require('./register');
 const loginRoute = require('./login');
@@ -8,11 +8,11 @@ const userAuthentication = require('../middlewares/userAuthentication');
 
 const router = express.Router();
 
-router.get('/', Controller.showHomePage);
+router.get('/', HomeController.showHomePage);
 router.get('/logout', LogoutController.logout);
 router.use('/register', registerRoute);
 router.use('/login', loginRoute);
-router.use(userAuthentication);
-router.use('/hospital', hospitalRoute);
+router.use('/hospital', userAuthentication, hospitalRoute);
+router.all('*', HomeController.notFoundPage);
 
 module.exports = router;

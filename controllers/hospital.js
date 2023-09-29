@@ -9,7 +9,7 @@ class HospitalController {
   }
 
   static automaticGenerateStatistic() {
-    cron.schedule('*/60 * * * * *', () => {
+    cron.schedule('*/60 2 * * * *', () => {
       let totalPatient;
       let recoveredPatient;
       Patient.findOne({
@@ -63,7 +63,7 @@ class HospitalController {
 
     Patient.findAll(options)
       .then((patients) => {
-        res.render('allPatient', { patients, deletedPatient, error });
+        res.render('allPatient', { patients, deletedPatient, error, query: req.query });
       })
       .catch((err) => {
         console.log(err);
@@ -131,6 +131,10 @@ class HospitalController {
       }
     })
       .then((patient) => {
+        if(!patient) {
+          throw { name: 'error data not found', msg: 'patient not found' };
+        }
+
         deletedPatien = patient;
         const status = patient.PatientDetail.status
 
@@ -144,7 +148,9 @@ class HospitalController {
         res.redirect(`/hospital/patient?deletedPatient=${deletedPatien.name}`);
       })
       .catch((err) => {
-        if(err.name === 'error delete patient') {
+        if(err.name === 'error data not found') {
+          res.redirect(`/hospital/patient?error=${err.msg}`);
+        } else if(err.name === 'error delete patient') {
           res.redirect(`/hospital/patient?error=${err.msg}`);
         } else {
           console.log(err);
@@ -159,8 +165,20 @@ class HospitalController {
       include: [PatientDetail, Desease]
     })
     .then((patient) => {
+      if(!patient) {
+        throw { name: 'error data not found', msg: 'patient not found' }
+      }
+
       res.render('patientDetail', { patient });
     })
+    .catch((err) => {
+      if(err.name === 'error data not found') {
+        res.redirect(`/hospital/patient?error=${err.msg}`);
+      } else {
+        console.log(err);
+        res.send(err);
+      }
+    });
   }
 
   static showEditPatientForm(req, res) {
@@ -172,11 +190,19 @@ class HospitalController {
       }
     })
     .then((patient) => {
+      if(!patient) {
+        throw { name: 'error data not found', msg: 'patient not found' }
+      }
+
       res.render('editPatient' , { patient, errors });
     })
     .catch((err) => {
-      console.log(err);
-      res.send(err);
+      if(err.name === 'error data not found') {
+        res.redirect(`/hospital/patient?error=${err.msg}`);
+      } else {
+        console.log(err);
+        res.send(err);
+      }
     });
   }
 
@@ -206,6 +232,10 @@ class HospitalController {
     let currentPatient;
     Patient.findByPk(patientId, { include: Desease })
       .then((patient) => {
+        if(!patient) {
+          throw { name: 'error data not found', msg: 'patient not found' }
+        }
+
         currentPatient = patient;
         return Desease.findAll();
       })
@@ -214,8 +244,12 @@ class HospitalController {
         res.render('addPatientDesease', { currentPatient, deseases, currentPatientDeseases });
       })
       .catch((err) => {
-        console.log(err);
-        res.send(err);
+        if(err.name === 'error data not found') {
+          res.redirect(`/hospital/patient?error=${err.msg}`);
+        } else {
+          console.log(err);
+          res.send(err);
+        }
       });
   }
 
@@ -246,11 +280,19 @@ class HospitalController {
       order: [[PatientMedicalRecord, 'date', 'DESC']]
     })
       .then((patient) => {
+        if(!patient) {
+          throw { name: 'error data not found', msg: 'patient not found' }
+        }
+
         res.render('medicalRecord', { patient });
       })
       .catch((err) => {
-        console.log(err);
-        res.send(err);
+        if(err.name === 'error data not found') {
+          res.redirect(`/hospital/patient?error=${err.msg}`);
+        } else {
+          console.log(err);
+          res.send(err);
+        }
       });
   }
 
@@ -264,11 +306,19 @@ class HospitalController {
       }
     })
       .then((patient) => {
+        if(!patient) {
+          throw { name: 'error data not found', msg: 'patient not found' }
+        }
+
         res.render('addMedicalRecord', { patient, errors });
       })
       .catch((err) => {
-        console.log(err);
-        res.send(err);
+        if(err.name === 'error data not found') {
+          res.redirect(`/hospital/patient?error=${err.msg}`);
+        } else {
+          console.log(err);
+          res.send(err);
+        }
       });
   }
 
